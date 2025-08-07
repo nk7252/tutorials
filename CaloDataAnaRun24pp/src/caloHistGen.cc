@@ -54,26 +54,26 @@ int caloHistGen::Init(PHCompositeNode * /*topNode*/)
   delete out;  // make cppcheck happy (nullptrs can be deleted)
   out = new TFile(Outfile.c_str(), "RECREATE");
 
-  h_emcTowE = new TH3F("emcTowE", "tower eta, tower phi, tower energy", 96, -0.5, 95.5, 256, -0.5, 256.5, 1000, -10, 25);
-  h_OHCalTowE = new TH3F("OHCalTowE", "outer hcal tower eta, tower phi, tower energy", 24, -0.5, 23.5, 64, -0.5, 63.5, 1000, -10, 25);
-  h_IHCalTowE = new TH3F("IHCalTowE", "inner hcal tower eta, tower phi, tower energy", 24, -0.5, 23.5, 64, -0.5, 63.5, 1000, -10, 25);
+  h_emcTowE = new TH3F("emcTowE", "tower eta, tower phi, tower energy", 96, -0.5, 95.5, 256, -0.5, 255.5, 100, -10, 25);
+  h_OHCalTowE = new TH3F("OHCalTowE", "outer hcal tower eta, tower phi, tower energy", 24, -0.5, 23.5, 64, -0.5, 63.5, 100, -10, 25);
+  h_IHCalTowE = new TH3F("IHCalTowE", "inner hcal tower eta, tower phi, tower energy", 24, -0.5, 23.5, 64, -0.5, 63.5, 100, -10, 25);
 
-  h_emcTowChi2 = new TH3F("emcTowChi2", "tower eta, tower phi, tower Chi2", 96, -0.5, 95.5, 256, -0.5, 256.5, 1000, 0.5, 4e8);
-  h_OHCalTowChi2 = new TH3F("OHCalTowChi2", "tower eta, tower phi, tower Chi2", 24, -0.5, 23.5, 64, -0.5, 63.5, 1000, 0.5, 4e8);
-  h_IHCalTowChi2 = new TH3F("IHCalTowChi2", "tower eta, tower phi, tower Chi2", 24, -0.5, 23.5, 64, -0.5, 63.5, 1000, 0.5, 4e8);
+  h_emcTowChi2 = new TH3F("emcTowChi2", "tower eta, tower phi, tower Chi2", 96, -0.5, 95.5, 256, -0.5, 255.5, 100, 0.5, 4e8);
+  h_OHCalTowChi2 = new TH3F("OHCalTowChi2", "tower eta, tower phi, tower Chi2", 24, -0.5, 23.5, 64, -0.5, 63.5, 100, 0.5, 4e8);
+  h_IHCalTowChi2 = new TH3F("IHCalTowChi2", "tower eta, tower phi, tower Chi2", 24, -0.5, 23.5, 64, -0.5, 63.5, 100, 0.5, 4e8);
 
-  h_emcTowTime = new TH3F("emcTowEnergy", "tower eta, tower phi, tower Time", 96, -0.5, 95.5, 256, -0.5, 256.5, 21, -10.5, 10.5);
+  h_emcTowTime = new TH3F("emcTowEnergy", "tower eta, tower phi, tower Time", 96, -0.5, 95.5, 256, -0.5, 255.5, 21, -10.5, 10.5);
   h_OHCalTowTime = new TH3F("OHCalTowEnergy", "tower eta, tower phi, tower Time", 24, -0.5, 23.5, 64, -0.5, 63.5, 21, -10.5, 10.5);
   h_IHCalTowTime = new TH3F("IHCalTowTime", "tower eta, tower phi, tower Time", 24, -0.5, 23.5, 64, -0.5, 63.5, 21, -10.5, 10.5);
 
-  h_emcTowPed = new TH3F("emcTowPed", "tower eta, tower phi, tower Ped", 96, -0.5, 95.5, 256, -0.5, 256.5, 100, 0, 5000);
+  h_emcTowPed = new TH3F("emcTowPed", "tower eta, tower phi, tower Ped", 96, -0.5, 95.5, 256, -0.5, 255.5, 100, 0, 5000);
   h_OHCalTowPed = new TH3F("OHCalTowPed", "tower eta, tower phi, tower Ped", 24, -0.5, 23.5, 64, -0.5, 63.5, 100, 0, 5000);
   h_IHCalTowPed = new TH3F("IHCalTowPed", "tower eta, tower phi, tower Ped", 24, -0.5, 23.5, 64, -0.5, 63.5, 100, 0, 5000);
 
   h_clusInfo = new TH3F("clusInfo", "cluster eta, phi, energy", 140, -1.2, 1.2, 100, -1. * M_PI, M_PI, 500, -2, 25);
 
-  h_clusPt = new TH1F("clusPt", "cluster pT", 500, -2, 25);
-  h_clusEcore = new TH1F("clusEcore", "cluster Ecore", 500, -2, 25);
+  h_clusPt = new TH1F("clusPt", "cluster pT", 100, -2, 25);
+  h_clusEcore = new TH1F("clusEcore", "cluster Ecore", 100, -2, 25);
 
   h_clusChi2 = new TH1F("clusChi2_E", "cluster chi2", 100, 0, 100);
 
@@ -83,9 +83,9 @@ int caloHistGen::Init(PHCompositeNode * /*topNode*/)
 
   h_zdcChanTime = new TH2F("zdcChanTime", "zdc timing per channel", 7, -0.5, 6.5, 21, -10.5, 10.5);
 
-  h_diPhotonEtaPhiE = new TH3F("h_diPhontonEtaPhiE", "diphoton spatial kinematics", 100, -1.1, 1.1, 100, -1 * M_PI, M_PI, 40, 0, 20);
+  h_diPhotonEtaPhiE = new TH3F("h_diPhontonEtaPhiE", "diphoton spatial kinematics", 50, -1.1, 1.1, 100, -1 * M_PI, M_PI, 40, 0, 20);
 
-  h_diPhotonMassE = new TH2F("h_diPhontonMassE", "diphoton mass and energy", 200, 0, 1, 40, 0, 20);
+  h_diPhotonMassE = new TH2F("h_diPhontonMassE", "diphoton mass and energy", 50, 0.02, 1, 40, 0, 20);
 
   // so that the histos actually get written out
   Fun4AllServer *se = Fun4AllServer::instance();
@@ -115,7 +115,7 @@ int caloHistGen::process_event(PHCompositeNode *topNode)
   }
 
   Gl1Packet *gl1PacketInfo = findNode::getClass<Gl1Packet>(topNode, m_trigNode.c_str());
-  if (!gl1PacketInfo)
+  if (!gl1PacketInfo && checkTrig)
   {
     std::cout << PHWHERE << "caloHistGen::process_event: " << m_trigNode << " node is missing. Output related to this node will be empty" << std::endl;
   }
@@ -128,8 +128,9 @@ int caloHistGen::process_event(PHCompositeNode *topNode)
       bool trig_decision = ((triggervec & 0x1U) == 0x1U);
 
       triggervec = (triggervec >> 1U) & 0xffffffffU;
-      if (!trig_decision && i == trigRequired[i])
+      if (!trig_decision && trigRequired[i])
       {
+        std::cout << "Trigger check failed, skipping event" << std::endl;
         return 0;
       }
     }
@@ -205,11 +206,20 @@ int caloHistGen::process_event(PHCompositeNode *topNode)
   }
 
   // pi0 reconstruction
-  if (doPi0Reco && storeEMCal)
+  float caloEnergy =  getTotalCaloEnergy(emcTowerContainer);
+  bool doHIPi0Reco = true;
+  if(isAuAu)
+  {
+    if(!(peripheralOnly &&  caloEnergy < caloFrac * emcaldownscale)) doHIPi0Reco = false;
+  }
+  
+  if (doPi0Reco && storeEMCal && doHIPi0Reco)
   {
     RawClusterContainer::ConstRange clusters = clusterContainer->getClusters();
     RawClusterContainer::ConstIterator clusterIter1, clusterIter2;
     int clusterCounter1 = 0;
+    int clusterCounter2 = 0;
+
     for (clusterIter1 = clusters.first; clusterIter1 != clusters.second; clusterIter1++)
     {
       RawCluster *recoCluster1 = clusterIter1->second;
@@ -226,25 +236,32 @@ int caloHistGen::process_event(PHCompositeNode *topNode)
       }
       CLHEP::Hep3Vector E_vec_cluster1 = RawClusterUtility::GetECoreVec(*recoCluster1, hep_vertex);
 
-      int clusterCounter2 = 0;
       for (clusterIter2 = clusters.first; clusterIter2 != clusters.second; clusterIter2++)
       {
+	clusterCounter2++;
         if (clusterCounter2 <= clusterCounter1)
         {
           continue;  // prevents double counting pairs
         }
-        clusterCounter2++;
         RawCluster *recoCluster2 = clusterIter2->second;
         CLHEP::Hep3Vector E_vec_cluster2 = RawClusterUtility::GetECoreVec(*recoCluster2, hep_vertex);
         if (recoCluster2->get_chi2() > 4)
         {
           continue;
         }
-        if (E_vec_cluster1.mag() < clusEMin || E_vec_cluster2.mag() < clusEMin)
+	float clusterLead = E_vec_cluster1.mag();
+	float clusterSub = E_vec_cluster2.mag();
+	if(E_vec_cluster2.mag() > clusterLead)
+	  {
+	    clusterLead = E_vec_cluster2.mag();
+	    clusterSub = E_vec_cluster1.mag();
+	  }
+	
+        if (clusterLead < clus1EMin || clusterSub < clus2EMin)
         {
           continue;
         }
-        if (std::abs(E_vec_cluster1.mag() - E_vec_cluster2.mag()) / (E_vec_cluster1.mag() + E_vec_cluster2.mag()) > maxAlpha)
+        if (std::fabs(E_vec_cluster1.mag() - E_vec_cluster2.mag()) / (E_vec_cluster1.mag() + E_vec_cluster2.mag()) > maxAlpha)
         {
           continue;
         }
@@ -256,6 +273,7 @@ int caloHistGen::process_event(PHCompositeNode *topNode)
       }
     }
   }
+  
   // tower information
   TowerInfoContainer *ohcTowerContainer = findNode::getClass<TowerInfoContainer>(topNode, m_ohcTowerNode);
   TowerInfoContainer *ihcTowerContainer = findNode::getClass<TowerInfoContainer>(topNode, m_ihcTowerNode.c_str());
@@ -312,7 +330,7 @@ int caloHistGen::process_event(PHCompositeNode *topNode)
   TowerInfoContainer *zdcTowerContainer = findNode::getClass<TowerInfoContainer>(topNode, m_zdcTowerNode.c_str());
   if (!zdcTowerContainer)
   {
-    std::cout << PHWHERE << "caloHistGen::process_event: " << m_emcTowerNode << " node is missing. Output related to this node will be empty" << std::endl;
+    std::cout << PHWHERE << "caloHistGen::process_event: " << m_zdcTowerNode.c_str() << " node is missing. Output related to this node will be empty" << std::endl;
     return Fun4AllReturnCodes::ABORTEVENT;
   }
 
@@ -396,3 +414,23 @@ int caloHistGen::End(PHCompositeNode * /*topNode*/)
   return Fun4AllReturnCodes::EVENT_OK;
 }
 
+float caloHistGen::getTotalCaloEnergy(TowerInfoContainer *towerContainer)
+{
+
+  float totalCaloEnergy = 0;
+  
+  if(!towerContainer) return std::nanf("1");
+
+  
+  int tower_range = towerContainer->size();
+  for(int iter = 0; iter < tower_range; iter++)
+    {
+      if(towerContainer->get_tower_at_channel(iter) -> get_isGood())
+	{
+	  double energy = towerContainer->get_tower_at_channel(iter)->get_energy();
+	  totalCaloEnergy += energy;
+	}
+    }
+
+  return totalCaloEnergy;
+}
